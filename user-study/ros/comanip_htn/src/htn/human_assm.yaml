@@ -1,0 +1,85 @@
+config:
+  fixed_sequence: []
+
+htn:
+  name: choose_drill
+  type: PARTIALLY_ORDERED
+  children:
+    - name: build_drill1
+      type: FULLY_ORDERED
+      children:
+        - name: 'choice_drill1'
+          type: PARTIALLY_ORDERED
+          children:
+            - name: get_parts1
+              type: PRIMITIVE
+              action: bring_parts
+              agent: HUMAN
+
+            - name: assm_shell1
+              type: FULLY_ORDERED
+              children:
+                - name: grab_tools1
+                  type: PRIMITIVE
+                  action: grab_tools
+                  agent: HUMAN
+
+                - name: attach_shell1
+                  type: PRIMITIVE
+                  action: attach_shell
+                  agent: HUMAN
+        - name: screw1
+          type: PRIMITIVE
+          action: screw
+          agent: HUMAN
+
+        - name: bring_parts1
+          type: PRIMITIVE
+          action: bring_parts
+          agent: HUMAN
+
+        - name: attach_battery1
+          type: PRIMITIVE
+          action: attach_battery
+          agent: HUMAN
+
+        - name: place_drill1
+          type: PRIMITIVE
+          action: place_drill
+          agent: HUMAN
+
+    - name: build_drill2
+      type: FULLY_ORDERED
+      children:
+        - name: 'choice_drill2'
+          type: PARTIALLY_ORDERED
+          children:
+            - name: get_parts2
+              type: PRIMITIVE
+              action: bring_parts
+              agent: HUMAN
+
+            - name: attach_shell2
+              type: PRIMITIVE
+              action: attach_shell
+              agent: HUMAN
+        - name: screw2
+          type: PRIMITIVE
+          action: screw
+          agent: HUMAN
+
+        - name: bring_parts2
+          type: PRIMITIVE
+          action: bring_parts
+          agent: HUMAN
+
+        - name: attach_battery2
+          type: PRIMITIVE
+          action: attach_battery
+          agent: HUMAN
+
+        - name: place_drill2
+          type: PRIMITIVE
+          action: place_drill
+          agent: HUMAN
+

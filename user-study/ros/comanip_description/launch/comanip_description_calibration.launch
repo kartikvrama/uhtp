@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<launch>
+  <!-- Joint state publisher gui -->
+  <arg name="gui" default="true" />
+
+  <!-- Load the URDF file -->
+  <arg name="urdf_file" default="$(find xacro)/xacro.py '$(find comanip_description)/robots/comanip_robot_calibration.urdf.xacro'" />
+  <param name="comanip_description_calibration" command="$(arg urdf_file)" />
+  <param name="robot/name" value="$(optenv ROBOT comanip_robot)" />
+  <param name="robot/type" value="comanip" />
+  
+
+  <!-- State publishers -->
+  <node name="comanip_calibrator_robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher">
+    <param name="publish_frequency" type="double" value="100" />
+    <remap from="robot_description" to="comanip_description_calibration"/>
+  </node>
+  <node name="comanip_calibrator_joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <param name="rate" value="100" />
+  	<param name="use_gui" value="$(arg gui)" />
+  	<rosparam param="source_list">[j2s7s300_driver/out/joint_state, gripper/joint_states]</rosparam>
+    <remap from="robot_description" to="comanip_description_calibration"/>
+  </node>
+
+  <!-- Visualization -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find comanip_description)/rviz/calibrate_robot.rviz" required="true" />
+</launch>

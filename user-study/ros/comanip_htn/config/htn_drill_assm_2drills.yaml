@@ -1,0 +1,211 @@
+
+fixed_sequence: [
+                 ['pick_shell_B', 'Shell'], ['pick_screws_B', 'ScrewBowlBlue'], ['pick_battery_B', 'BatteryBlue'],
+                 ['pick_shell_Y', 'Shell'], ['pick_screws_Y', 'ScrewBowlYellow'], ['pick_battery_Y', 'BatteryYellow'],
+                ]
+
+htn:
+  name: assembly_drill
+  type: FULLY_ORDERED
+  children:
+
+    - name: ordering_decision
+      type: DECISION
+      children: 
+        # Series execution
+        - name: s_assembly_set
+          type: PARTIALLY_ORDERED
+          children: 
+
+            - name: s_build_drill_B
+              type: FULLY_ORDERED
+              children:
+                - name: s_pick_shell_B
+                  type: PRIMITIVE
+                  action: pick_shell_B
+                  parameters:
+                    object: Shell
+                  agent: ROBOT
+
+                - name: s_attach_shell_B
+                  type: PRIMITIVE
+                  action: attach_shell_B
+                  agent: HUMAN
+
+                - name: s_pick_screws_B
+                  type: PRIMITIVE
+                  action: pick_screws_B
+                  parameters:
+                    object: ScrewBowlBlue
+                  agent: ROBOT
+
+                - name: s_screw_B
+                  type: PRIMITIVE
+                  action: screw_B
+                  agent: HUMAN
+
+                - name: s_pick_battery_B
+                  type: PRIMITIVE
+                  action: pick_battery_B
+                  parameters:
+                    object: BatteryBlue
+                  agent: ROBOT
+
+                - name: s_attach_battery_B
+                  type: PRIMITIVE
+                  action: attach_battery_B
+                  agent: HUMAN
+
+                - name: s_place_drill_B
+                  type: PRIMITIVE
+                  action: place_drill_B
+                  agent: HUMAN
+
+            - name: s_build_drill_Y
+              type: FULLY_ORDERED
+              children:
+
+                - name: s_pick_shell_Y
+                  type: PRIMITIVE
+                  action: pick_shell_Y
+                  parameters:
+                    object: Shell
+                  agent: ROBOT
+
+                - name: s_attach_shell_Y
+                  type: PRIMITIVE
+                  action: attach_shell_Y
+                  agent: HUMAN
+
+                - name: s_pick_screws_Y
+                  type: PRIMITIVE
+                  action: pick_screws_Y
+                  parameters:
+                    object: ScrewBowlYellow
+                  agent: ROBOT
+
+                - name: s_screw_Y
+                  type: PRIMITIVE
+                  action: screw_Y
+                  agent: HUMAN
+
+                - name: s_pick_battery_Y
+                  type: PRIMITIVE
+                  action: pick_battery_Y
+                  parameters:
+                    object: BatteryYellow
+                  agent: ROBOT
+
+                - name: s_attach_battery_Y
+                  type: PRIMITIVE
+                  action: attach_battery_Y
+                  agent: HUMAN
+
+                - name: s_place_drill_Y
+                  type: PRIMITIVE
+                  action: place_drill_Y
+                  agent: HUMAN
+
+        # Mixed execution
+        - name: m_assembly_set
+          type: PARTIALLY_ORDERED
+          children:
+            - name: m_build_drill_B
+              type: FULLY_ORDERED
+              children:
+                - name: m_pick_shell_B
+                  type: PRIMITIVE
+                  action: pick_shell_B
+                  parameters:
+                    object: Shell
+                  agent: ROBOT
+
+                - name: m_choice_screw_B
+                  type: PARTIALLY_ORDERED
+                  children:
+                    - name: m_pick_screws_B
+                      type: PRIMITIVE
+                      action: pick_screws_B
+                      parameters:
+                        object: ScrewBowlBlue
+                      agent: ROBOT
+
+                    - name: m_attach_shell_B
+                      type: PRIMITIVE
+                      action: attach_shell_B
+                      agent: HUMAN
+
+                - name: m_choice_battery_B
+                  type: PARTIALLY_ORDERED
+                  children:
+                    - name: m_pick_battery_B
+                      type: PRIMITIVE
+                      action: pick_battery_B
+                      parameters:
+                        object: BatteryBlue
+                      agent: ROBOT
+
+                    - name: m_screw_B
+                      type: PRIMITIVE
+                      action: screw_B
+                      agent: HUMAN
+
+                - name: m_attach_battery_B
+                  type: PRIMITIVE
+                  action: attach_battery_B
+                  agent: HUMAN
+
+                - name: m_place_drill_B
+                  type: PRIMITIVE
+                  action: place_drill_B
+                  agent: HUMAN
+
+            - name: m_build_drill_Y
+              type: FULLY_ORDERED
+              children:
+                - name: m_pick_shell_Y
+                  type: PRIMITIVE
+                  action: pick_shell_Y
+                  parameters:
+                    object: Shell
+                  agent: ROBOT
+
+                - name: m_choice_screw_Y
+                  type: PARTIALLY_ORDERED
+                  children:
+                    - name: m_pick_screws_Y
+                      type: PRIMITIVE
+                      action: pick_screws_Y
+                      parameters:
+                        object: ScrewBowlYellow
+                      agent: ROBOT
+
+                    - name: m_attach_shell_Y
+                      type: PRIMITIVE
+                      action: attach_shell_Y
+                      agent: HUMAN
+
+                - name: m_choice_battery_Y
+                  type: PARTIALLY_ORDERED
+                  children:
+                    - name: m_pick_battery_Y
+                      type: PRIMITIVE
+                      action: pick_battery_Y
+                      parameters:
+                        object: BatteryYellow
+                      agent: ROBOT
+
+                    - name: m_screw_Y
+                      type: PRIMITIVE
+                      action: screw_Y
+                      agent: HUMAN
+
+                - name: m_attach_battery_Y
+                  type: PRIMITIVE
+                  action: attach_battery_Y
+                  agent: HUMAN
+
+                - name: m_place_drill_Y
+                  type: PRIMITIVE
+                  action: place_drill_Y
+                  agent: HUMAN

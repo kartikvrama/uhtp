@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<launch>
+
+<rosparam command="load" file="$(find comanip_config)/config/segmentation_params.yaml" ns="rail_segmentation"/>
+
+<node pkg="rail_segmentation" type="rail_segmentation" name="rail_segmentation" output="screen"/>
+
+<node pkg="rviz" type="rviz" name="rail_segmentation_rviz" args="-d $(find comanip_config)/rviz/rail_segmentation_rviz.rviz"/>
+
+<node pkg="comanip_config" name="gotopose_server" type="gotopose_server.py" output="screen"/> 
+
+<node pkg="comanip_config" name="gotoobj_server" type="gotoobj_server.py"  output="screen"/> 
+
+</launch>

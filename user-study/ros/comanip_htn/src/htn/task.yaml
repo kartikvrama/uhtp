@@ -1,0 +1,24 @@
+config:
+  fixed_sequence: ['attach_bl_leg', 'attach_br_leg', 'attach_l_back']
+
+htn:
+  name: build_chair
+  type: FULLY_ORDERED
+  children:
+    - name: build_components
+      type: PARTIALLY_ORDERED
+      children:
+        - name: 'build_seat'
+          type: FULLY_ORDERED
+          children:
+            - name: attach_legs
+              type: PARTIALLY_ORDERED
+            - name: attach_l_back
+              type: PRIMITIVE
+              action: attach_l_back
+              parameters:
+                velocity: 0
+                object_id: 1
+
+        - name: build_back
+          type: PARTIALLY_ORDERED

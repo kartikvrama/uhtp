@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="user_id"/>
+    <arg name="mode"/>
+
+    <node pkg="comanip_htn" name="recorder" type="topic2data.py" output="screen" args="-user_id $(arg user_id) -mode $(arg mode)"/>
+
+    <node pkg="comanip_htn" name="executable" type="run_htn_extended.py" output="screen" args="-user_id $(arg user_id) -mode $(arg mode)"/>
+
+</launch>

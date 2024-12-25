@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- Xacro properties -->
+  <xacro:property name="pi" value="3.1415926535897931" />
+
+  <xacro:macro name="azure_kinect_mount" params="prefix">
+    <material name="black">
+      <color rgba="0. 0. 0. 1" />
+    </material>
+    <material name="dark_grey">
+      <color rgba="0.1 0.1 0.1 1" />
+    </material>
+    <material name="grey">
+      <color rgba="0.6 0.6 0.6 1" />
+    </material>
+    <material name="white">
+      <color rgba="0.9 0.9 0.9 1" />
+    </material>
+
+    <link name="${prefix}camera_base">
+      <visual>
+        <origin xyz="-0.013 0. 0." />
+        <geometry>
+          <box size="0.026 0.103 0.039" />
+        </geometry>
+        <material name="grey" />
+      </visual>
+    </link>
+
+    <joint name="${prefix}camera_base_to_body" type="fixed">
+      <parent link="${prefix}camera_base" />
+      <child link="${prefix}camera_body" />
+      <origin xyz="-0.0757 0. 0.008" rpy="0. 0. 0." />
+    </joint>
+    <link name="${prefix}camera_body">
+      <visual>
+        <origin xyz="0. 0. 0." />
+        <geometry>
+          <box size="0.0994 0.0996 0.023" />
+        </geometry>
+        <material name="white" />
+      </visual>
+    </link>
+
+    <joint name="${prefix}camera_base_to_visor" type="fixed">
+      <parent link="${prefix}camera_base" />
+      <child link="${prefix}camera_visor" />
+      <origin xyz="0. 0. 0." rpy="0. 0. 0." />
+    </joint>
+    <link name="${prefix}camera_visor">
+      <visual>
+        <origin xyz="-0.0128 0. 0." />
+        <geometry>
+          <box size="0.026 0.101 0.037" />
+        </geometry>
+        <material name="black" />
+      </visual>
+    </link>
+
+    <joint name="${prefix}camera_base_to_depth_link" type="fixed">
+      <parent link="${prefix}camera_base" />
+      <child link="${prefix}depth_camera_link" />
+      <origin xyz="0.000 0.000 0.002" rpy="-1.676 -0.000 -1.571" />
+    </joint>
+    <link name="${prefix}depth_camera_link"/>
+
+    <joint name="${prefix}depth_link_to_rgb_link" type="fixed">
+      <parent link="${prefix}depth_camera_link" />
+      <child link="${prefix}rgb_camera_link" />
+      <origin xyz="0.032 0.003 -0.004" rpy="0.090 0.002 0.001" />
+    </joint>
+    <link name="${prefix}rgb_camera_link"/>
+
+  </xacro:macro>
+</robot>

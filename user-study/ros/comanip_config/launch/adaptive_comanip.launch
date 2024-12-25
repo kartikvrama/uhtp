@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Launch basic drivers for setup -->
+    <include file="$(find comanip_config)/launch/drivers.launch"/>
+
+    <!-- Launch services for segmentation and manipulation -->
+    <include file="$(find comanip_config)/launch/services_segmentation.launch"/>
+
+    <node pkg="comanip_config" name="gotostart" type="gotohome.py" output="screen"/> 
+
+    <!-- Launch activity recognition camera -->
+    <!-- <include file="$(find comanip_config)/launch/activity_camera.launch"/> -->
+
+</launch>

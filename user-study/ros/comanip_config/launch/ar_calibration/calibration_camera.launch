@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Start the camera driver -->
+    <include file="$(find azure_kinect_ros_driver)/launch/driver.launch">
+        <arg name="tf_prefix" value="" />
+        <arg name="overwrite_robot_description" value="false" />
+        <arg name="sensor_sn" value="000203201512" />
+        <arg name="point_cloud_in_depth_frame" value="false" />
+        <arg name="body_tracking_enabled" value="false"/>
+    </include>
+
+    <!-- Start the front camera driver -->
+<!--    <include file="$(find azure_kinect_ros_driver)/launch/driver.launch" ns="front">-->
+<!--        <arg name="tf_prefix" value="front" />-->
+<!--        <arg name="overwrite_robot_description" value="false" />-->
+<!--        <arg name="sensor_sn" value="000436194512" />-->
+<!--        <arg name="point_cloud_in_depth_frame" value="false" />-->
+<!--        <arg name="body_tracking_enabled" value="true"/>-->
+<!--    </include>-->
+
+    <!-- Start the description publishers -->
+    <include file="$(find comanip_description)/launch/comanip_description.launch"/>
+
+</launch>

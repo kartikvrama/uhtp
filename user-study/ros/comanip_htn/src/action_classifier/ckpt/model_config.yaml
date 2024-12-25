@@ -1,0 +1,4 @@
+input_dim: 96
+class_names: ['attach_shell', 'screw', 'attach_battery', 'place_drill', 
+             'hold', 'grab_parts'] 
+eval_model: 'model_front_bestacc.ckpt'

@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: comanip_description
+    relative_path: robots/comanip_robot.urdf.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/comanip_robot.srdf
+  CONFIG:
+    author_name: Kartik Ramachandruni @RAIL
+    author_email: kvr6@gatech.edu
+    generated_timestamp: 1616709735

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Robot args: Gazebo vs. Real Robot Arm -->
+    <arg name="sim" default="false" />
+    <arg name="urdf" default="true" />
+
+    <!-- Description args: Joint state publisher gui -->
+    <arg name="gui" default="false" />
+
+    <!-- Robot params: Gripper --> 
+    <arg name="comport" value="/dev/ttyUSB0"/>
+    <arg name="baud" value="115200"/>
+
+    <!-- Start the arm driver -->
+    <include file="$(find comanip_config)/launch/kinova_robot.launch" unless="$(arg sim)">
+        <arg name="kinova_robotType" value="j2s7s300" />
+        <arg name="use_urdf" value="$(arg urdf)" />
+    </include>
+
+    <node pkg="comanip_config" name="gotostart" type="gotohome.py" output="screen"/> 
+
+    <!-- Start the camera driver -->
+    <include file="$(find azure_kinect_ros_driver)/launch/driver.launch">
+        <arg name="tf_prefix" value="" />
+        <arg name="overwrite_robot_description" value="false" />
+        <!-- <arg name="sensor_sn" value="000436194512" /> -->
+        <arg name="sensor_sn" value="000203201512" />
+        <arg name="point_cloud_in_depth_frame" value="true" />
+        <arg name="body_tracking_enabled" value="false"/>
+    </include>
+
+    <!-- Start the description publishers -->
+    <include file="$(find comanip_description)/launch/comanip_description_calibration.launch"/>
+
+</launch>

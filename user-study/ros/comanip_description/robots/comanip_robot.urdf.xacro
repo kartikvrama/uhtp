@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="comanip_robot">
+  <xacro:include filename="$(find comanip_description)/urdf/structure/arm_j2s7s300.urdf.xacro" />
+  <xacro:include filename="$(find comanip_description)/urdf/sensors/azure_kinect_fixed.urdf.xacro"/>
+
+  <xacro:arm_j2s7s300 prefix="">
+  </xacro:arm_j2s7s300>
+
+  <xacro:azure_kinect_mount prefix="">
+  </xacro:azure_kinect_mount>
+
+  <!-- satellite camera -->
+  <!-- for overhead camera -->
+  <joint name="j2s7s300_link_base_camera_base" type="fixed">
+    <parent link="j2s7s300_link_base" />
+    <child link="camera_base" />
+    <origin xyz="-0.401 -0.368 1.140" rpy="0.022 1.549 1.590" />
+  </joint>
+
+  <!-- DEBUG: workspace for visualization -->
+  <!-- <joint name="j2s7s300_link_base_table_fixed" type="fixed">
+    <parent link="j2s7s300_link_base" />
+    <child link="table_fixed" />
+    <origin xyz="0.0 -0.45 0.2" rpy="0.0 0.0 0.0" /> 
+  </joint>
+  <link name="table_fixed">
+    <visual>
+      <geometry>
+        <box size="1.5 0.7 0.6" />
+      </geometry>
+      <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+      <material name="blue">
+        <color rgba="0 0.2 0.2 0.25"/>
+      </material>
+    </visual>
+  </link> -->
+
+  <!-- for front camera -->
+<!--  <joint name="j2s7s300_link_base_calibrate_side_camera_link" type="fixed">-->
+<!--    <parent link="j2s7s300_link_base" />-->
+<!--    <child link="camera_base" />-->
+<!--    <origin xyz="0.169 0.410 1.047" rpy="0.002 0.590 -1.723" /> -->
+<!--  </joint>-->
+
+
+</robot>

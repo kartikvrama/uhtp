@@ -1,0 +1,6 @@
+debug: true
+point_cloud_topic: "/points2"
+min_cluster_size: 200
+max_cluster_size: 10000
+use_color: true
+zones_config: '/home/comanip/kartik_ws/src/adaptive-comanip/comanip_config/config/segmentation_zones.yaml'

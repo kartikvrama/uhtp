@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<launch>
+
+    <!-- Robot params: Gripper --> 
+    <arg name="comport" value="/dev/ttyUSB0"/>
+    <arg name="baud" value="115200"/>
+
+    <!-- Start the gripper driver and gripper action server driver -->
+    <node pkg="robotiq_85_driver" type="robotiq_85_driver" name="robotiq_85_driver" respawn="true" output="screen">
+        <param name="num_grippers" value="1"/>
+        <param name="comport" value="$(arg comport)" />
+        <param name="baud" value="$(arg baud)" />
+    </node>
+    <node pkg="robotiq_85_gripper_actions" type="gripper_actions" name="gripper_actions"/>
+
+</launch>

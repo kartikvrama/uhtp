@@ -1,0 +1,11 @@
+# Define the goal
+string json_config
+rail_manipulation_msgs/SegmentedObjectList object_list
+bool is_close
+---
+# Define the result
+uint32 done
+int32 object_id
+---
+# Define a feedback message
+float32 percent_complete

@@ -1,0 +1,217 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="comanip_robot">
+  <xacro:include filename="$(find comanip_description)/urdf/structure/arm_j2s7s300.urdf.xacro" />
+  <xacro:include filename="$(find comanip_description)/urdf/sensors/azure_kinect_fixed.urdf.xacro"/>
+
+  <xacro:arm_j2s7s300 prefix="">
+  </xacro:arm_j2s7s300>
+
+  <xacro:azure_kinect_mount prefix="">
+  </xacro:azure_kinect_mount>
+
+  <!-- table for visualization -->
+  <joint name="j2s7s300_link_base_table_fixed" type="fixed">
+    <parent link="j2s7s300_link_base" />
+    <child link="table_fixed" />
+    <origin xyz="0.0 -0.366 -0.047" rpy="0.0 0.0 0.0" /> 
+  </joint>
+  <link name="table_fixed">
+    <visual>
+      <geometry>
+        <box size="1.83 0.912 0.02" />
+      </geometry>
+      <origin xyz="0.0 0 -0.01" rpy="0 0 0" />
+      <material name="blue">
+        <color rgba="0 0.2 0.2 0.8"/>
+      </material>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="1.83 0.912 0.02" />
+      </geometry>
+      <origin xyz="0.0 0 -0.01" rpy="0 0 0" />
+    </collision>
+  </link>
+
+  <!-- satellite camera -->
+  <joint name="j2s7s300_link_base_calibrate_side_camera_link" type="fixed">
+    <parent link="j2s7s300_link_base" />
+    <child link="calibrate_side_camera_link" />
+    <!-- FRONT PARAMETERS -->
+    <!-- <origin xyz="0.097 0.388 1.131" rpy="0.029 0.535 -1.577 " /> -->
+    <!-- OVERHEAD PARAMETERS -->
+    <origin xyz="-0.401 -0.368 1.140" rpy="0.022 1.549 1.590" />
+  </joint>
+  <link name="calibrate_side_camera_link"/>
+
+  <joint name="calibrate_side_camera_link_camera_side_x" type="prismatic">
+    <parent link="calibrate_side_camera_link"/>
+    <child link="camera_side_x_link"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="100" lower="-2.0" upper="2.0" velocity="1"/>
+  </joint>
+  <link name="camera_side_x_link"/>
+
+  <joint name="camera_side_x_link_camera_side_y_link" type="prismatic">
+    <parent link="camera_side_x_link"/>
+    <child link="camera_side_y_link"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" lower="-2.0" upper="2.0" velocity="1"/>
+  </joint>
+  <link name="camera_side_y_link"/>
+
+  <joint name="camera_side_y_link_camera_side_z_link" type="prismatic">
+    <parent link="camera_side_y_link"/>
+    <child link="camera_side_z_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="100" lower="-2.0" upper="2.0" velocity="1"/>
+  </joint>
+  <link name="camera_side_z_link"/>
+
+  <joint name="camera_side_z_link_camera_side_roll_link" type="revolute">
+    <parent link="camera_side_z_link"/>
+    <child link="camera_side_roll_link"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="100" lower="-3.92699081699" upper="3.92699081699" velocity="20"/>
+  </joint>
+  <link name="camera_side_roll_link"/>
+
+  <joint name="camera_side_roll_link_camera_side_pitch_link" type="revolute">
+    <parent link="camera_side_roll_link"/>
+    <child link="camera_side_pitch_link"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" lower="-3.92699081699" upper="3.92699081699" velocity="20"/>
+  </joint>
+  <link name="camera_side_pitch_link"/>
+
+  <joint name="camera_side_pitch_link_camera_side_yaw_link" type="revolute">
+    <parent link="camera_side_pitch_link"/>
+    <child link="camera_side_yaw_link"/>
+    <axis xyz="0 0 1"/>
+    <limit effort="100" lower="-3.92699081699" upper="3.92699081699" velocity="20"/>
+  </joint>
+  <link name="camera_side_yaw_link"/>
+
+  <joint name="camera_side_yaw_link_camera_rgb_link" type="fixed">
+    <parent link="camera_side_yaw_link"/>
+    <child link="camera_base"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+
+<!--  <joint name="calibrate_side_camera_link_camera_side_x" type="prismatic">-->
+<!--    <parent link="calibrate_side_camera_link"/>-->
+<!--    <child link="camera_side_x_link"/>-->
+<!--    <axis xyz="1 0 0"/>-->
+<!--    <limit effort="100" lower="-0.1" upper="0.1" velocity="1"/>-->
+<!--  </joint>-->
+<!--  <link name="camera_side_x_link"/>-->
+
+<!--  <joint name="camera_side_x_link_camera_side_y_link" type="prismatic">-->
+<!--    <parent link="camera_side_x_link"/>-->
+<!--    <child link="camera_side_y_link"/>-->
+<!--    <axis xyz="0 1 0"/>-->
+<!--    <limit effort="100" lower="-0.1" upper="0.1" velocity="1"/>-->
+<!--  </joint>-->
+<!--  <link name="camera_side_y_link"/>-->
+
+<!--  <joint name="camera_side_y_link_camera_side_z_link" type="prismatic">-->
+<!--    <parent link="camera_side_y_link"/>-->
+<!--    <child link="camera_side_z_link"/>-->
+<!--    <axis xyz="0 0 1"/>-->
+<!--    <limit effort="100" lower="-0.1" upper="0.1" velocity="1"/>-->
+<!--  </joint>-->
+<!--  <link name="camera_side_z_link"/>-->
+
+<!--  <joint name="camera_side_z_link_camera_side_roll_link" type="revolute">-->
+<!--    <parent link="camera_side_z_link"/>-->
+<!--    <child link="camera_side_roll_link"/>-->
+<!--    <axis xyz="1 0 0"/>-->
+<!--    <limit effort="100" lower="-0.392699081699" upper="0.392699081699" velocity="20"/>-->
+<!--  </joint>-->
+<!--  <link name="camera_side_roll_link"/>-->
+
+<!--  <joint name="camera_side_roll_link_camera_side_pitch_link" type="revolute">-->
+<!--    <parent link="camera_side_roll_link"/>-->
+<!--    <child link="camera_side_pitch_link"/>-->
+<!--    <axis xyz="0 1 0"/>-->
+<!--    <limit effort="100" lower="-0.392699081699" upper="0.392699081699" velocity="20"/>-->
+<!--  </joint>-->
+<!--  <link name="camera_side_pitch_link"/>-->
+
+<!--  <joint name="camera_side_pitch_link_camera_side_yaw_link" type="revolute">-->
+<!--    <parent link="camera_side_pitch_link"/>-->
+<!--    <child link="camera_side_yaw_link"/>-->
+<!--    <axis xyz="0 0 1"/>-->
+<!--    <limit effort="100" lower="-0.392699081699" upper="0.392699081699" velocity="20"/>-->
+<!--  </joint>-->
+<!--  <link name="camera_side_yaw_link"/>-->
+
+<!--  <joint name="camera_side_yaw_link_camera_side_link" type="fixed">-->
+<!--    <parent link="camera_side_yaw_link"/>-->
+<!--    <child link="camera_base"/>-->
+<!--    <origin rpy="0 0 0" xyz="0 0 0"/>-->
+<!--  </joint>-->
+
+<!--sensor calibration-->
+
+<!--  <joint name="j2s7s300_link_base_sensor_calibration_link_joint" type="fixed">-->
+<!--      <parent link="j2s7s300_link_base" />-->
+<!--      <child link="sensor_frame_sensor_calibration_link" />-->
+<!--      <origin xyz="0.0 0.07 -0.038" rpy="0 ${pi/2.0} ${pi/2.0}" />-->
+<!--  </joint>-->
+<!--  <link name="sensor_frame_sensor_calibration_link"/>-->
+
+<!--  <joint name="sensor_frame_sensor_calibrate_x" type="prismatic">-->
+<!--    <parent link="sensor_frame_sensor_calibration_link"/>-->
+<!--    <child link="sensor_frame_sensor_x_link"/>-->
+<!--    <axis xyz="1 0 0"/>-->
+<!--    <limit effort="100" lower="-0.1" upper="0.1" velocity="1"/>-->
+<!--  </joint>-->
+<!--  <link name="sensor_frame_sensor_x_link"/>-->
+
+<!--  <joint name="sensor_frame_sensor_calibrate_y" type="prismatic">-->
+<!--    <parent link="sensor_frame_sensor_x_link"/>-->
+<!--    <child link="sensor_frame_sensor_y_link"/>-->
+<!--    <axis xyz="0 1 0"/>-->
+<!--    <limit effort="100" lower="-0.1" upper="0.1" velocity="1"/>-->
+<!--  </joint>-->
+<!--  <link name="sensor_frame_sensor_y_link"/>-->
+
+<!--  <joint name="sensor_frame_sensor_calibrate_z" type="prismatic">-->
+<!--    <parent link="sensor_frame_sensor_y_link"/>-->
+<!--    <child link="sensor_frame_sensor_z_link"/>-->
+<!--    <axis xyz="0 0 1"/>-->
+<!--    <limit effort="100" lower="-0.1" upper="0.1" velocity="1"/>-->
+<!--  </joint>-->
+<!--  <link name="sensor_frame_sensor_z_link"/>-->
+
+<!--  <joint name="sensor_frame_sensor_calibrate_pitch" type="revolute">-->
+<!--    <parent link="sensor_frame_sensor_z_link"/>-->
+<!--    <child link="sensor_frame_sensor_pitch_link"/>-->
+<!--    <axis xyz="0 1 0"/>-->
+<!--    <limit effort="100" lower="0.392699081699" upper="-0.392699081699" velocity="20"/>-->
+<!--  </joint>-->
+<!--  <link name="sensor_frame_sensor_pitch_link"/>-->
+
+<!--  <joint name="sensor_frame_sensor_calibrate_yaw" type="revolute">-->
+<!--    <parent link="sensor_frame_sensor_pitch_link"/>-->
+<!--    <child link="sensor_frame_sensor_yaw_link"/>-->
+<!--    <axis xyz="0 0 1"/>-->
+<!--    <limit effort="100" lower="0.196349540849" upper="-0.196349540849" velocity="20"/>-->
+<!--  </joint>-->
+<!--  <link name="sensor_frame_sensor_yaw_link"/>-->
+
+<!--  <joint name="sensor_frame_sensor_yaw_link_sensor_frame_sensor_link_joint" type="fixed">-->
+<!--    <parent link="sensor_frame_sensor_yaw_link"/>-->
+<!--    <child link="sensor_frame_sensor_link"/>-->
+<!--  </joint>-->
+<!--  <link name="sensor_frame_sensor_link"/>-->
+
+<!--  <joint name="camera_rgb_joint" type="fixed">-->
+<!--    <origin rpy="0.0 0.0 0.0" xyz="0.0 0.0 0.0"/>-->
+<!--    <parent link="sensor_frame_sensor_link"/>-->
+<!--    <child link="camera_base"/>-->
+<!--  </joint>-->
+
+
+</robot>

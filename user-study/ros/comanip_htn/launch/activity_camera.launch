@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<launch>
+    <!-- Start the front camera driver  -->
+    <include file="$(find azure_kinect_ros_driver)/launch/driver.launch" ns="front">
+        <arg name="tf_prefix" value="front_" />
+        <arg name="overwrite_robot_description" value="false" />
+        <arg name="sensor_sn" value="000436194512" />
+        <arg name="point_cloud_in_depth_frame" value="true" />
+        <arg name="body_tracking_enabled" value="true"/>
+    </include>
+
+    <!-- Start calibrated camera parameter publisher -->
+    <node pkg="comanip_htn" name="detect_color_marker" type="detect_color_marker.py" output="screen"/> 
+
+    <!-- <node pkg="rviz" type="rviz" name="segmentation_visual_rviz" args="-d $(find comanip_htn)/rviz/rail_segmentation_rviz.rviz"/> -->
+
+    <!-- Start calibrated camera parameter publisher -->
+    <!-- <node pkg="aruco_tracker" name="publish_camera_info" type="publish_camera_info.py" output="screen"/>  -->
+
+    <!-- Start aruco marker pose publisher -->
+    <!-- <node pkg="aruco_tracker" name="publish_aruco_markers" type="publish_aruco_markers.py" output="screen"/>  -->
+
+</launch>
