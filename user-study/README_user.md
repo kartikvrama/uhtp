@@ -1,9 +1,9 @@
 # User experiments
 
 ## Classifier training
-Instructions for training the activity classifier.
+The `classifier_training` directory contains the code used to train the activity classifier. The classifier uses body skeleton data to determine the user's current activity during the user study.
 
-### Labels
+### Activity labels
 For the drill assembly task, we created six activity labels:
 - `attach_shell`: User attaching the shell to the drill.
 - `screw`: User screwing the screws into the shell.
@@ -37,10 +37,10 @@ python test.py -model_config model_config.yaml
 ## User study execution
 The `ros` directory contains the code used for the user study execution. Ros drivers for the Azure Kinect camera ,Kinova JACO robot arm, and tabletop segmentation and object detection are marked as git submodules.
 
-ToDo: Clean up redundant files.
+ToDo: Clean up redundant files, and do a final dry run.
 
 ### Setup
-Copy the contents of the `ros` directory to your catkin workspace and build the workspace using `catkin_make` or `catkin build`. Note that some of the packages are interdependent, so you may need to build the workspace multiple times. 
+Copy the contents of the `ros` directory to your catkin workspace and build the workspace using `catkin_make` or `catkin build`. Note that some of the packages are interdependent, so you may need to build the workspace multiple times. For running the activity classifier, refer to the python dependencies in this [requirements file](user-study\classifier_training\requirements.txt).
 
 ### Launch
 To launch the user experiment:
@@ -49,3 +49,25 @@ To launch the user experiment:
 - For the baseline algorithm: `roslaunch comanip_htn run_demo.launch user_id:=<user_id> mode:=fixed`
 
 Instead of the full experiment, there is a demo mode that can be launched using `roslaunch comanip_htn run_demo.launch`.
+
+## Data analysis
+User results can be found in the (user_results)[user-study\user-analysis\user_results] directory. 
+
+## Setup
+Inside the `user-analysis` directory, install the required packages using `pip install -r requirements.txt`.
+
+## Analysis
+The following scripts can be used to analyze the results:
+
+- [results_makespan.py](user-study/user-analysis/results_makespan.py) performs a Mann-Whitney U test to compare the makespan of the two algorithms and generates violin plots.
+- [results_participant_responses.py](user-study/user-analysis/results_participant_responses.py) performs the appropriate statistical analysis on survey responses and TLX scores. For example, to compare the likert respones between the two groups, run 
+```
+python results_participant_responses.py --likert True
+```
+- [results_participant_responses_bygroup.py](user-study/user-analysis/results_participant_responses_bygroup.py) divides participants based on what study condition (`adaptive` or `fixed`) they experienced first and performs statistical analysis on the survey responses and TLX scores. For example, to compare the TLX scores divided by the ordering of scenarios, run 
+```
+python results_participant_responses_bygroup.py --tlx True
+```
+- [likert_crop.py](user-study\user-analysis\likert_crop.py) crops the likert scale bar plots per question, which is then used to generate Fig 11 in the paper.
+
+All plots are saved in the [plots](user-study/user-analysis/plots) directory.
