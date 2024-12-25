@@ -1,0 +1,13 @@
+logname:  'logs' #'minifocalloss_withrobot_extended_full' 
+
+loss_function: 'Focal' #'Cross-entropy', 'Focal'
+beta: 0.999
+
+num_epochs: 2 #250
+batch_size: 256
+learning_rate: 1e-5
+weight_decay: 5e-6
+
+Test:
+  pelvis_mean: 'logs/pelvis_mean.npy'
+  test_ckpt: 'logs/model_front_final.ckpt'
