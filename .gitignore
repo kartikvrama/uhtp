@@ -168,7 +168,7 @@ simulation/plots
 simulation/results
 
 # Logs
-user-study/comanip_htn/expt_logs
+user-study/ros/comanip_htn/expt_logs
 user-study/classifier_training/data_withrobot_extended
 user-study/classifier_training/logs
 user-study/classifier_training/dataset
