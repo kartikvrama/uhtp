@@ -1,6 +1,7 @@
 # User experiments
 
 ## Classifier training
+Instructions for training the activity classifier.
 
 ### Labels
 For the drill assembly task, we created six activity labels:
@@ -11,7 +12,7 @@ For the drill assembly task, we created six activity labels:
 - `hold`: User being idle.
 - `grab_parts`: User grabbing parts given by the robot.
 
-### Installation
+### Setup
 - Install Python 3.8 or higher from [here](https://www.python.org/downloads/).
 - Install pytorch from [here](https://pytorch.org/get-started/locally/).
 - Install the required packages using `pip install -r requirements.txt` or `conda install --file requirements.txt`.
@@ -32,3 +33,19 @@ To test the classifier, update the `Test` section of `model_config.yaml` with th
 ```
 python test.py -model_config model_config.yaml
 ```
+
+## User study execution
+The `ros` directory contains the code used for the user study execution. Ros drivers for the Azure Kinect camera ,Kinova JACO robot arm, and tabletop segmentation and object detection are marked as git submodules.
+
+ToDo: Clean up redundant files.
+
+### Setup
+Copy the contents of the `ros` directory to your catkin workspace and build the workspace using `catkin_make` or `catkin build`. Note that some of the packages are interdependent, so you may need to build the workspace multiple times. 
+
+### Launch
+To launch the user experiment:
+- Launch the necessary drivers: `roslaunch comanip_config adaptive_comanip.launch`
+- For the UHTP algorithm: `roslaunch comanip_htn run_demo.launch user_id:=<user_id> mode:=adaptive`
+- For the baseline algorithm: `roslaunch comanip_htn run_demo.launch user_id:=<user_id> mode:=fixed`
+
+Instead of the full experiment, there is a demo mode that can be launched using `roslaunch comanip_htn run_demo.launch`.
