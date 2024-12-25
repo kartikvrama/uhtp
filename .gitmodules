@@ -1,0 +1,18 @@
+[submodule "user-study/ros/Azure_Kinect_ROS_Driver"]
+	path = user-study/ros/Azure_Kinect_ROS_Driver
+	url = git@github.com:microsoft/Azure_Kinect_ROS_Driver.git
+[submodule "user-study/ros/kinova-ros"]
+	path = user-study/ros/kinova-ros
+	url = git@github.com:GT-RAIL/kinova-ros.git
+[submodule "user-study/ros/robotiq_85_gripper"]
+	path = user-study/ros/robotiq_85_gripper
+	url = git@github.com:GT-RAIL/robotiq_85_gripper.git
+[submodule "user-study/ros/robotiq_85_gripper_actions"]
+	path = user-study/ros/robotiq_85_gripper_actions
+	url = git@github.com:GT-RAIL/robotiq_85_gripper_actions.git
+[submodule "user-study/ros/rail_segmentation"]
+	path = user-study/ros/rail_segmentation
+	url = git@github.com:GT-RAIL/rail_segmentation.git
+[submodule "user-study/ros/rail_manipulation_msgs"]
+	path = user-study/ros/rail_manipulation_msgs
+	url = git@github.com:GT-RAIL/rail_manipulation_msgs.git
