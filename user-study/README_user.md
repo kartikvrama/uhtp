@@ -12,8 +12,10 @@ For the drill assembly task, we created six activity labels:
 - `grab_parts`: User grabbing parts given by the robot.
 
 ### Installation
+- Install Python 3.8 or higher from [here](https://www.python.org/downloads/).
 - Install pytorch from [here](https://pytorch.org/get-started/locally/).
 - Install the required packages using `pip install -r requirements.txt` or `conda install --file requirements.txt`.
+- Install opencv using `pip install opencv-python`.
 
 ### Dataset
 The dataset for training the activity classifier consists of user skeletons annotated with their corresponding activity. Download the dataset from this link: [dataset](https://www.dropbox.com/scl/fo/cqb8toktjnmidtg99fzmn/AFbFgfGcpfV1Q-L9kT6uG1Y?rlkey=0nnh24191bynga1azppoe20vj&st=iddt2vuk&dl=0). Save the dataset in a directory under `classifier_training` called `dataset`.

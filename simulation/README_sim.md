@@ -3,7 +3,7 @@
 Experiment results are stored in the `results` directory as pickle files, and analysis plots and HTN diagrams are stored in the `plots` directory.
 
 ## Installation
-Install python packages using the requirements file, either by running `pip install -r requirements.txt` or `conda install --file requirements.txt`. Then, create a `results` and `plots` folder in the simulation directory.
+These experiments are tested on python 3.10. Install python packages using the requirements file, either by running `pip install -r requirements.txt` or `conda install --file requirements.txt`. Then, create a `results` and `plots` folder in the simulation directory.
 
 ## Running Experiments
 The file `run_sim.py` has two arguments: `--task` specifies whether to run the IKEA chair assembly task (`ikea`) or the drill assembly task (`drill`), and `--verbose` specifies whether to visualize the HTNs of individual tasks. For example, to run the IKEA chair assembly task without visualizing HTNs, run: 
