@@ -37,8 +37,6 @@ python test.py -model_config model_config.yaml
 ## User study execution
 The `ros` directory contains the code used for the user study execution. Ros drivers for the Azure Kinect camera ,Kinova JACO robot arm, and tabletop segmentation and object detection are marked as git submodules.
 
-ToDo: Clean up redundant files, and do a final dry run.
-
 ### Setup
 Copy the contents of the `ros` directory to your catkin workspace and build the workspace using `catkin_make` or `catkin build`. Note that some of the packages are interdependent, so you may need to build the workspace multiple times. For running the activity classifier, refer to the python dependencies in this [requirements file](user-study\classifier_training\requirements.txt).
 
